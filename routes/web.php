@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Role;
+use App\Models\Staff;
+use App\Models\Product;
 
 
 /*
@@ -23,14 +25,20 @@ use App\Models\Role;
 
 Route::get('/create',function(){
     
+   // $NewUser = new User(['name'=>'David the first','email'=>'asd@123.hu','password'=>'1234']);
+    //$NewUser->save();
+
+    
     $user= User::findOrFail(1);
+/*
+   $post = new Post(['title'=>'First post','body'=>"This is the first post ever"]);
+   $user->posts()->save($post);
+   $role = new Role(['name'=>'AdminCaptain']);
+   $user->roles()->save($role);
+*/
+ // $staff = Staff::find(1);
 
-  //  $post = new Post(['title'=>'First post','body'=>"This is the first post ever"]);
-   // $user->posts()->save($post);
-
-  $role = new Role(['name'=>'AdminCaptain']);
-
-  $user->roles()->save($role);
+  //$staff->photos()->create(['path'=>'example_path.jpg']);
 
 });
 
@@ -44,10 +52,11 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middlewareGroups'=> ['web']] ,function(){
-    //
+Route::group(['middlewareGroups' => ['web']], function () {
+ 
+    Route::resource('/posts','PostsController');
+ 
 });
 
 
-Route::resource('/post','PostsController');
-
+Route::resource('/posts','PostsController');
