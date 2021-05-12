@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Role;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,13 +25,20 @@ Route::get('/create',function(){
     
     $user= User::findOrFail(1);
 
-    $post = new Post(['title'=>'First post','body'=>"This is the first post ever"]);
+  //  $post = new Post(['title'=>'First post','body'=>"This is the first post ever"]);
+   // $user->posts()->save($post);
 
-    $user->posts()->save($post);
+  $role = new Role(['name'=>'AdminCaptain']);
+
+  $user->roles()->save($role);
 
 });
 
 /* end of testing routes*/
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
