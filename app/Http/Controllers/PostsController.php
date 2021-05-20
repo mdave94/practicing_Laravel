@@ -77,21 +77,25 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id)
+        $post = Post::findOrFail($id);
         
-        return view('posts.edit',compact('post'))
+        return view('posts.edit',compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $post -> update($request->all());
+
+        return redirect('posts');
     }
 
     /**
