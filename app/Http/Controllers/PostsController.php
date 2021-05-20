@@ -13,8 +13,12 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return  "lefut";
+    {   
+        $posts = Post::all();
+
+        
+        return  view('posts.index',compact('posts'));
+        
     }
 
     /**
@@ -45,6 +49,8 @@ class PostsController extends Controller
         $post->body = "Égetett szöveg";
         $post->save();
 
+        return view('posts.index');
+
 
     }
 
@@ -54,9 +60,13 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+
+
+        return view('posts.show',compact('post'));
     }
 
     /**
@@ -65,9 +75,11 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id)
+        
+        return view('posts.edit',compact('post'))
     }
 
     /**

@@ -5,7 +5,7 @@
 @include('includes.navbar')
 
 @section('content')
-
+<h1>Create Post</h1>
 
 <form action="/posts"   method="post">
     @csrf
