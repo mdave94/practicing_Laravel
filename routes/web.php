@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\Role;
 use App\Models\Staff;
 use App\Models\Product;
-
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +23,14 @@ use App\Models\Product;
 
 /* Testing routes */
 
+
 Route::get('/create',function(){
     
    // $NewUser = new User(['name'=>'David the first','email'=>'asd@123.hu','password'=>'1234']);
     //$NewUser->save();
 
     
-    $user= User::findOrFail(1);
+    
 /*
    $post = new Post(['title'=>'First post','body'=>"This is the first post ever"]);
    $user->posts()->save($post);
@@ -46,17 +47,25 @@ Route::get('/create',function(){
 
 
 
+Route::view('/createPage', 'posts/create');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
+Route::get('/edit', function () {
+    return view('posts/edit');
+});
 
+//Route::get('/test','PostsController@create');
+/*
 Route::group(['middlewareGroups' => ['web']], function () {
  
-    Route::resource('/posts','PostsController');
- 
+    Route::resource('Http\Controllers','PostsController');
+ //Route::get('/posts',[PostsController::class]);
 });
+Route::resource('posts', PostController::class);
 
-
+*/
 Route::resource('/posts','PostsController');
+
