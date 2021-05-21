@@ -46,9 +46,12 @@ class PostsController extends Controller
         $post = new Post;
 
         $post->title = $request->title;
-        $post->body = "Égetett szöveg";
+        $post->body = $request->content;
+
+       
         $post->save();
 
+        
         return view('posts.index');
 
 
@@ -104,8 +107,10 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::whereId($id)->delete();
+        
+        return redirect('/posts');
     }
 }

@@ -10,6 +10,8 @@
 <form action="/posts"   method="post">
     @csrf
 <input type="text" name="title"  placeholder="Enter title">
+<br>
+<input type="text" name="content" placeholder="Enter content">
 
 <input type="submit" name="submit">
 
