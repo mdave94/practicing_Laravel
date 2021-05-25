@@ -17,8 +17,10 @@
 </head>
 <body>
     
-    
-    @yield('content')
+    <div style="margin: auto;width:300px;">
+        @yield('content')
+    </div>
+
   
 
     @yield('footer')

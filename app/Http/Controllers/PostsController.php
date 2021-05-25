@@ -43,6 +43,17 @@ class PostsController extends Controller
         //return $request->get('title');
         //Post::create($request->all());
 
+        $this->validate($request,[
+
+            'title'=>'required|max:50',
+            'content'=>'required'
+
+
+
+        ]);
+
+
+
         $post = new Post;
 
         $post->title = $request->title;
