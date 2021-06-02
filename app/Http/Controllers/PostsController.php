@@ -45,43 +45,27 @@ class PostsController extends Controller
     {
 
 
+        $input = $request->all();
 
-        $request->validate([
-          // 'file' => 'required|mimes:pdf,xlx,csv|max:2048',
-           'title' => 'required'
-        ]);
+       
 
-  
-        $fileName = time().'.'.$request->file->extension();  
-   
-        $request->file->move(public_path('uploads'), $fileName);
-   
-        return "You have successfully upload file. ".$fileName;
+        if($file = $request->file('file')){
+            $name = $file->getClientOriginalName();
            
-       
-        //Post::create($request->all());
-/*
-        $this->validate($request,[
+            $file->move('images',$name);    
 
-            'title'=>'required|max:50',
-            'content'=>'required'
+            $input['path'] = $name;
+            $input['body'] = $request->content;
 
-        ]);
+        }
 
+        Post::create($input);
 
-
-        $post = new Post;
-
-        $post->title = $request->title;
-        $post->body = $request->content;
-
-       
-        $post->save();
+        $posts = Post::latest()->get();
+        return  view('posts.index',compact('posts'));
 
         
-        return view('posts.index');
-
-*/
+    
     }
 
     /**

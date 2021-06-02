@@ -8,8 +8,19 @@
 
 <ul>
     @foreach ($posts as $post)
+
+        <div class="image-container">
+            <a href="{{route('posts.show',$post->id)}}">
+                <img style="height:100px" src="{{$post->path}} "  >
+            </a>
+            
+
+        </div>
+
         <li><a href="{{route('posts.show',$post->id)}}">
-            {{$post->title}}  </a>
+            
+            {{$post->title}} 
+            </a>
         
         </li>
         
