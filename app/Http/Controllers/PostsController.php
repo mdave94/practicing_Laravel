@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreatePostrequest;
+
+
 
 class PostsController extends Controller
 {
@@ -14,7 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {   
-        $posts = Post::all();
+        $posts = Post::latest()->get();
 
         
         return  view('posts.index',compact('posts'));
@@ -38,17 +41,30 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostrequest $request)
     {
-        //return $request->get('title');
-        //Post::create($request->all());
 
+
+
+        $request->validate([
+          // 'file' => 'required|mimes:pdf,xlx,csv|max:2048',
+           'title' => 'required'
+        ]);
+
+  
+        $fileName = time().'.'.$request->file->extension();  
+   
+        $request->file->move(public_path('uploads'), $fileName);
+   
+        return "You have successfully upload file. ".$fileName;
+           
+       
+        //Post::create($request->all());
+/*
         $this->validate($request,[
 
             'title'=>'required|max:50',
             'content'=>'required'
-
-
 
         ]);
 
@@ -65,7 +81,7 @@ class PostsController extends Controller
         
         return view('posts.index');
 
-
+*/
     }
 
     /**

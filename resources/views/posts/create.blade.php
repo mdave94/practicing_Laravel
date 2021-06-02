@@ -7,15 +7,24 @@
 @section('content')
 <h1>Create Post</h1>
 
-<form action="/posts"   method="post">
-    @csrf
-<input type="text" name="title"  placeholder="Enter title">
-<br>
-<input type="text" name="content" placeholder="Enter content">
+<form action="/posts" enctype="multipart/form-data"  method="post">
+        @csrf
+    <input type="text" name="title"  placeholder="Enter title">
+    <br>
+    <input type="text" name="content" placeholder="Enter content">
+    
+    
+    <div class="">
+        <input type="file" name="file" class="form-control">
+    </div>
 
-<input type="submit" name="submit">
+    <input type="submit" name="submit">
+    
 
 </form>
+
+
+
 
 @if (count($errors) > 0)
 

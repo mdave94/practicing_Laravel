@@ -16,6 +16,7 @@
         
     @endforeach
 </ul>
+<button type="button"  onclick="location.href='{{ url('createPage') }}'"  class="btn btn-primary">Create new Element</button>
 
 @endsection
 
