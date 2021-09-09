@@ -57,8 +57,12 @@ Route::get('/edit', function () {
     return view('posts/edit');
 });
 
-//Route::get('/test','PostsController@create');
-/*
+Route::get('/admin/user/roles',['middleware'=>'role',function(){
+    return 'Middleware role';
+}]);
+
+
+
 Route::group(['middlewareGroups' => ['web']], function () {
  
     Route::resource('Http\Controllers','PostsController');
@@ -66,7 +70,7 @@ Route::group(['middlewareGroups' => ['web']], function () {
 });
 Route::resource('posts', PostController::class);
 
-*/
+
 //Route::resource('/posts','PostsController');
 
 Route::group(['middlewareGroups' => ['web']], function () {
